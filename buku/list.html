@@ -9,6 +9,8 @@
   <body>
     <header>
       <h1>SIMPUS-Mini</h1>
+      <input type="checkbox" class="nav-toggle" id="nav-toggle">
+      <label for="nav-toggle" class="nav-toggle-label">&#9776;</label>
       <nav>
         <ul>
           <li><a href="../index.html">Beranda</a></li>
@@ -20,52 +22,54 @@
       </nav>
     </header>
     <main>
-      <table>
-        <thead>
-          <tr>
-            <th>Judul</th>
-            <th>Pengarang</th>
-            <th>Tahun</th>
-            <th>Stok</th>
-            <th>Aksi</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Laskar Pelangi</td>
-            <td>Andrea Hirata</td>
-            <td>2005</td>
-            <td>4</td>
-            <td>
-              <button type="button">Edit</button>
-              <button type="button">Detail</button>
-              <button type="button">Hapus</button>
-            </td>
-          </tr>
-          <tr>
-            <td>Filosofi Teras</td>
-            <td>Henry Manampiring</td>
-            <td>2018</td>
-            <td>6</td>
-            <td>
-              <button type="button">Edit</button>
-              <button type="button">Detail</button>
-              <button type="button">Hapus</button>
-            </td>
-          </tr>
-          <tr>
-            <td>Laut Bercerita</td>
-            <td>Leila S. Chudori</td>
-            <td>2017</td>
-            <td>3</td>
-            <td>
-              <button type="button">Edit</button>
-              <button type="button">Detail</button>
-              <button type="button">Hapus</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>Judul</th>
+              <th>Pengarang</th>
+              <th>Tahun</th>
+              <th>Stok</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Laskar Pelangi</td>
+              <td>Andrea Hirata</td>
+              <td>2005</td>
+              <td>4</td>
+              <td>
+                <button type="button">Edit</button>
+                <button type="button">Detail</button>
+                <button type="button">Hapus</button>
+              </td>
+            </tr>
+            <tr>
+              <td>Filosofi Teras</td>
+              <td>Henry Manampiring</td>
+              <td>2018</td>
+              <td>6</td>
+              <td>
+                <button type="button">Edit</button>
+                <button type="button">Detail</button>
+                <button type="button">Hapus</button>
+              </td>
+            </tr>
+            <tr>
+              <td>Laut Bercerita</td>
+              <td>Leila S. Chudori</td>
+              <td>2017</td>
+              <td>3</td>
+              <td>
+                <button type="button">Edit</button>
+                <button type="button">Detail</button>
+                <button type="button">Hapus</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </main>
     <footer>
       <p>&copy; 2026 SIMPUS-Mini &mdash; Jobsheet 1</p>

@@ -38,17 +38,17 @@ header {
 	align-items: center;
 	justify-content: space-between;
 	flex-wrap: wrap;
-	
+
 	h1 {
 		font-size: 1.4rem;
 	}
-	
+
 	nav ul {
 		list-style: none;
 		display: flex;
 		gap: 1.25rem;
 	}
-	
+
 	nav a {
 		color: #fff;
 		font-weight: 500;
@@ -69,7 +69,7 @@ section {
 	padding: 1.5rem;
 	margin-bottom: 1.5rem;
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-	
+
 	h2 {
 		margin-bottom: 1rem;
 		color: var(--primary);
@@ -81,7 +81,7 @@ section {
 
 main section:nth-of-type(2) div {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	grid-template-columns: repeat(2, 1fr);
 	gap: 1rem;
 
 	article {
@@ -109,13 +109,14 @@ main section:nth-of-type(2) div {
 table {
 	width: 100%;
 	border-collapse: collapse;
-	
-	th, td {
+
+	th,
+	td {
 		text-align: left;
 		padding: 0.65rem 0.75rem;
 		border-bottom: 1px solid #e2e6ea;
 	}
-	
+
 	thead {
 		background-color: var(--primary);
 		color: #fff;
@@ -125,11 +126,12 @@ table {
 		&:nth-child(even) {
 			background-color: #f7f9fb;
 		}
+
 		&:hover {
 			background-color: #eef4fa;
 		}
 	}
-	
+
 	td button {
 		padding: 0.35rem 0.7rem;
 		margin-right: 0.35rem;
@@ -142,13 +144,13 @@ table {
 			background-color: #f0ad4e;
 			color: #fff;
 		}
-		
+
 		&:last-of-type {
 			background-color: #d9534f;
 			color: #fff;
 		}
 	}
-	
+
 }
 
 
@@ -194,4 +196,78 @@ footer {
 	padding: 1.25rem;
 	color: #7a8794;
 	font-size: 0.9rem;
+}
+
+/* ===== Hamburger Menu (checkbox hack) ===== */
+.nav-toggle {
+	display: none;
+}
+
+.nav-toggle-label {
+	display: none;
+	font-size: 1.6rem;
+	color: #fff;
+	cursor: pointer;
+}
+
+/* ===== Tabel Responsif ===== */
+.table-responsive {
+	overflow-x: auto;
+}
+
+/* ===== Responsive Breakpoints ===== */
+
+/* Tablet ke bawah */
+
+@media (max-width: 768px) {
+	main section:nth-of-type(2) div {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+/* Mobile */
+@media (max-width: 800px) {
+	header {
+		position: relative;
+	}
+
+	.nav-toggle-label {
+		display: block;
+	}
+
+	header nav {
+		display: none;
+		width: 100%;
+		order: 3;
+		margin-top: 1rem;
+	}
+
+	.nav-toggle:checked ~ nav {
+		display: block;
+	}
+
+	header nav ul {
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+
+	main section:nth-of-type(2) div {
+		grid-template-columns: repeat(1, 1fr);
+	}
+
+	form input,
+	form select {
+		max-width: 100%;
+	}
+}
+
+/* Desktop */
+@media (min-width: 1400px) {
+	main {
+		max-width: 1200px;
+	}
+
+	main section:nth-of-type(2) div {
+		grid-template-columns: repeat(4, 1fr) !important;
+	}
 }
