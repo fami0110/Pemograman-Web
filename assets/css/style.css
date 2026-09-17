@@ -199,8 +199,13 @@ footer {
 }
 
 /* ===== Hamburger Menu (checkbox hack) ===== */
-.nav-toggle {
+.nav-toggle-label {
 	display: none;
+	font-size: 1.6rem;
+	color: #fff;
+	background: none;
+	border: none;
+	cursor: pointer;
 }
 
 .nav-toggle-label {
@@ -225,6 +230,26 @@ footer {
 	}
 }
 
+/* ===== Pesan Error Validasi ===== */
+.error {
+	display: block;
+	color: #d9534f;
+	font-size: 0.85rem;
+	margin-top: 0.25rem;
+}
+
+/* ===== Kolom Pencarian ===== */
+.search-box {
+ 	margin-bottom: 1rem;
+}
+.search-box input {
+	width: 100%;
+	max-width: 320px;
+	padding: 0.5rem 0.75rem;
+	border: 1px solid #cdd4da;
+	border-radius: 4px;
+}
+
 /* Mobile */
 @media (max-width: 800px) {
 	header {
@@ -233,17 +258,26 @@ footer {
 
 	.nav-toggle-label {
 		display: block;
+		text-align: center;
+		width: 2rem;
 	}
 
 	header nav {
-		display: none;
+		display: block;
 		width: 100%;
 		order: 3;
-		margin-top: 1rem;
+		max-height: 0;
+		opacity: 0;
+		transform: translateY(-10px);
+		overflow: hidden;
+		transition: max-height 0.35s ease-in-out, opacity 0.35s ease-in-out, transform 0.35s ease-in-out;
 	}
 
-	.nav-toggle:checked ~ nav {
-		display: block;
+	header nav.nav-open {
+		padding-top: 1rem;
+		max-height: 320px;
+		opacity: 1;
+		transform: translateY(0);
 	}
 
 	header nav ul {

@@ -9,8 +9,6 @@
   <body>
     <header>
       <h1>SIMPUS-Mini</h1>
-      <input type="checkbox" class="nav-toggle" id="nav-toggle">
-      <label for="nav-toggle" class="nav-toggle-label">&#9776;</label>
       <nav>
         <ul>
           <li><a href="../index.html">Beranda</a></li>
@@ -20,8 +18,15 @@
           <li><a href="../anggota/tambah.html">Tambah Anggota</a></li>
         </ul>
       </nav>
+      <button type="button" id="nav-toggle-btn" class="nav-toggle-label" arialabel="Menu">
+        &#9776;
+      </button>
     </header>
     <main>
+      <div class="search-box">
+        <label for="search-input">Cari Judul Buku</label>
+        <input type="text" id="search-input" placeholder="Ketik judul buku...">
+      </div>
       <div class="table-responsive">
         <table>
           <thead>
@@ -42,7 +47,7 @@
               <td>
                 <button type="button">Edit</button>
                 <button type="button">Detail</button>
-                <button type="button">Hapus</button>
+                <button type="button" class="btn-hapus">Hapus</button>
               </td>
             </tr>
             <tr>
@@ -53,7 +58,7 @@
               <td>
                 <button type="button">Edit</button>
                 <button type="button">Detail</button>
-                <button type="button">Hapus</button>
+                <button type="button" class="btn-hapus">Hapus</button>
               </td>
             </tr>
             <tr>
@@ -64,7 +69,7 @@
               <td>
                 <button type="button">Edit</button>
                 <button type="button">Detail</button>
-                <button type="button">Hapus</button>
+                <button type="button" class="btn-hapus">Hapus</button>
               </td>
             </tr>
           </tbody>
@@ -74,5 +79,7 @@
     <footer>
       <p>&copy; 2026 SIMPUS-Mini &mdash; Jobsheet 1</p>
     </footer>
+
+    <script src="../assets/js/app.js"></script>
   </body>
 </html>

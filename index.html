@@ -9,7 +9,6 @@
   <body>
     <header>
       <h1>SIMPUS-Mini</h1>
-      <input type="checkbox" class="nav-toggle" id="nav-toggle">
       <nav>
         <ul>
           <li><a href="index.html">Beranda</a></li>
@@ -19,7 +18,9 @@
           <li><a href="anggota/tambah.html">Tambah Anggota</a></li>
         </ul>
       </nav>
-      <label for="nav-toggle" class="nav-toggle-label">&#9776;</label>
+      <button type="button" id="nav-toggle-btn" class="nav-toggle-label" arialabel="Menu">
+        &#9776;
+      </button>
     </header>
     <main>
       <section>
@@ -53,5 +54,7 @@
     <footer>
       <p>&copy; 2026 SIMPUS-Mini &mdash; Jobsheet 2</p>
     </footer>
+
+    <script src="assets/js/app.js"></script>
   </body>
 </html>
