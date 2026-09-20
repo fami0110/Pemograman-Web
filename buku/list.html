@@ -32,6 +32,7 @@
           <thead>
             <tr>
               <th>Judul</th>
+              <th>Kategori</th>
               <th>Pengarang</th>
               <th>Tahun</th>
               <th>Stok</th>
@@ -39,47 +40,22 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Laskar Pelangi</td>
-              <td>Andrea Hirata</td>
-              <td>2005</td>
-              <td>4</td>
-              <td>
-                <button type="button">Edit</button>
-                <button type="button">Detail</button>
-                <button type="button" class="btn-hapus">Hapus</button>
-              </td>
-            </tr>
-            <tr>
-              <td>Filosofi Teras</td>
-              <td>Henry Manampiring</td>
-              <td>2018</td>
-              <td>6</td>
-              <td>
-                <button type="button">Edit</button>
-                <button type="button">Detail</button>
-                <button type="button" class="btn-hapus">Hapus</button>
-              </td>
-            </tr>
-            <tr>
-              <td>Laut Bercerita</td>
-              <td>Leila S. Chudori</td>
-              <td>2017</td>
-              <td>3</td>
-              <td>
-                <button type="button">Edit</button>
-                <button type="button">Detail</button>
-                <button type="button" class="btn-hapus">Hapus</button>
-              </td>
-            </tr>
+            
           </tbody>
         </table>
       </div>
+      <p id="loading-indicator" style="display:none;">Memuat data...</p>
     </main>
     <footer>
       <p>&copy; 2026 SIMPUS-Mini &mdash; Jobsheet 1</p>
     </footer>
 
     <script src="../assets/js/app.js"></script>
+    <script src="../assets/js/fetch-data.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        fetchData("../data/buku.json");
+      });
+    </script>
   </body>
 </html>
