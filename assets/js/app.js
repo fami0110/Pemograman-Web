@@ -13,15 +13,15 @@ function initNavToggle() {
 
 // ===== Konfirmasi Hapus =====
 function initHapusConfirm() {
-  document.addEventListener("click", function (e) {
-    const btn = e.target.closest(".btn-hapus");
-    if (!btn) return;
-
-    const row = btn.closest("tr");
+  document.addEventListener("submit", function (e) {
+    const form = e.target;
+    if (!form.classList.contains("form-hapus")) return;
+    
+    const row = form.closest("tr");
     const nama = row ? row.querySelector("td")?.textContent : "data ini";
     const yakin = confirm("Yakin ingin menghapus \"" + nama + "\"?");
 
-    if (yakin && row) row.remove();
+    if (!yakin) e.preventDefault();
   });
 }
 
@@ -93,6 +93,6 @@ function initValidasiForm() {
 document.addEventListener("DOMContentLoaded", function () {
   initNavToggle();
   initHapusConfirm();
-  initTableFilter();
+  // initTableFilter();
   initValidasiForm();
 });

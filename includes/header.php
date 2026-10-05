@@ -1,5 +1,5 @@
 <?php
-	session_start();
+	
 	$__jobsheetRoot = dirname(__DIR__);
 	$__scriptDir = dirname($_SERVER['SCRIPT_FILENAME']);
 	$__rel = ltrim(str_replace('\\', '/', substr($__scriptDir, strlen($__jobsheetRoot))), '/');
@@ -27,6 +27,7 @@
 			<ul>
 				<li><a href="<?php echo $base; ?>buku/list.php">Buku</a></li>
 				<li><a href="<?php echo $base; ?>anggota/list.php">Anggota</a></li>
+				<li><a href="<?php echo $base; ?>login.php">Login</a></li>
 			</ul>
 		</nav>
 	</header>

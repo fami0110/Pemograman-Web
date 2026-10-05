@@ -109,6 +109,18 @@ main section:nth-of-type(2) div {
 	}
 }
 
+/* ===== Kolom Pencarian ===== */
+.search-box {
+	margin-bottom: 1rem;
+	
+	input#search-input {
+		width: 100%;
+		max-width: 320px;
+		padding: 0.5rem 0.75rem;
+		border: 1px solid #cdd4da;
+		border-radius: 4px;
+	}
+}
 
 /* ===== Tabel ===== */
 @keyframes pulse {
@@ -160,25 +172,39 @@ table {
 		}
 	}
 
-	td button {
-		padding: 0.35rem 0.7rem;
-		margin-right: 0.35rem;
+	td button:first-of-type,
+	td a.btn-edit {
+		background-color: #f0ad4e;
+		color: #fff;
+	}
+
+	td button:last-of-type,
+	td .btn-hapus {
+		background-color: #d9534f;
+		color: #fff;
+	}
+
+	td .btn-edit,
+	td .btn-hapus {
+		display: inline-block;
 		border: none;
+		padding: 0.5rem 0.7rem !important;
+		margin-right: 0.35rem !important;
 		border-radius: 4px;
 		cursor: pointer;
-		font-size: 0.85rem;
+		font-size: 0.85rem !important;
+		line-height: normal;
+		transition: transform 0.2s ease !important;
 
-		&:first-of-type {
-			background-color: #f0ad4e;
-			color: #fff;
-		}
-
-		&:last-of-type {
-			background-color: #d9534f;
-			color: #fff;
+		&:hover {
+			text-decoration: none;
+			transform: scale(1.15) !important;
 		}
 	}
 
+	td form.form-hapus {
+		display: inline;
+	}
 }
 
 
@@ -263,6 +289,33 @@ form button[type="submit"]:hover {
 	opacity: 0.85;
 }
 
+/* ===== Paginasi Tabel ===== */
+.pagination {
+	display: flex;
+	gap: 0.5rem;
+	margin-top: 1rem;
+	justify-content: center;
+
+	a {
+		padding: 0.4rem 0.75rem;
+		border: 1px solid #cdd4da;
+		border-radius: 4px;
+		color: var(--primary);
+		transition: transform 0.2s ease !important;
+	
+		&.active {
+			background-color: var(--primary);
+			color: #fff;
+			border-color: var(--primary);
+		}
+
+		&:hover {
+			text-decoration: none;
+			transform: scale(1.15);
+		}
+	}
+}
+
 /* ===== Flash Message ===== */
 .flash {
 	padding: 0.75rem 1rem;
@@ -287,6 +340,14 @@ footer {
 	font-size: 0.9rem;
 	background-color: var(--primary);
 	font-weight: bold;
+}
+
+/* ===== Pesan Error Validasi ===== */
+.error {
+	display: block;
+	color: #d9534f;
+	font-size: 0.85rem;
+	margin-top: 0.25rem;
 }
 
 /* ===== Hamburger Menu (checkbox hack) ===== */
@@ -319,26 +380,6 @@ footer {
 	main section:nth-of-type(2) div {
 		grid-template-columns: repeat(2, 1fr);
 	}
-}
-
-/* ===== Pesan Error Validasi ===== */
-.error {
-	display: block;
-	color: #d9534f;
-	font-size: 0.85rem;
-	margin-top: 0.25rem;
-}
-
-/* ===== Kolom Pencarian ===== */
-.search-box {
- 	margin-bottom: 1rem;
-}
-.search-box input {
-	width: 100%;
-	max-width: 320px;
-	padding: 0.5rem 0.75rem;
-	border: 1px solid #cdd4da;
-	border-radius: 4px;
 }
 
 /* Mobile */

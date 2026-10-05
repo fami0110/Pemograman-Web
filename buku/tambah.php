@@ -39,9 +39,13 @@ unset($_SESSION['flash']);
       <p>
         <label for="kategori">Kategori</label>
         <select id="kategori" name="kategori">
-          <option value="fiksi">Fiksi</option>
-          <option value="non-fiksi">Non-Fiksi</option>
-          <option value="referensi">Referensi</option>
+          <?php foreach ([
+            "Laga", "Drama", "Sejarah", "Inspiratif", "Sastra", "Romantis", "Self-Improvement",
+          ] as $opt): ?>
+            <option value="<?= $opt; ?>">
+              <?= $opt; ?>
+            </option>
+          <?php endforeach; ?>
         </select>
       </p>
     </article>

@@ -2,7 +2,12 @@
 
 session_start();
 
-require __DIR__ . '/../includes/koneksi.php';
+$id = $_POST['id'] ?? null;
+
+if (!$id) {
+	header('Location: list.php');
+	exit;
+}
 
 $judul = trim($_POST['judul'] ?? '');
 $pengarang = trim($_POST['pengarang'] ?? '');
@@ -35,17 +40,22 @@ if (!is_numeric($stok) || $stok < 0) {
 
 if (!empty($errors)) {
 	$_SESSION['flash'] = ['type' => 'error', 'pesan' => implode(' ', $errors)];
-	header('Location: tambah.php');
+	header('Location: edit.php?id='.$id);
 	exit;
 }
 
 try {
+	require __DIR__ . '/../includes/koneksi.php';
 	$stmt = $pdo->prepare(
-		"INSERT INTO buku (judul, pengarang, tahun, isbn, stok, kategori)
-		VALUES (:judul, :pengarang, :tahun, :isbn, :stok, :kategori)
-		RETURNING id"
+		"UPDATE buku SET 
+			judul = :judul, 
+			pengarang = :pengarang, 
+			tahun = :tahun,
+			isbn = :isbn, 
+			stok = :stok, 
+			kategori = :kategori 
+		WHERE id = :id"
 	);
-
 	$stmt->execute([
 		'judul' => $judul,
 		'pengarang' => $pengarang,
@@ -53,18 +63,17 @@ try {
 		'isbn' => $isbn,
 		'stok' => (int) $stok,
 		'kategori' => $kategori,
+		'id' => $id,
 	]);	
 
-	$_SESSION['flash'] = ['type' => 'success', 'pesan' => 'Buku berhasil ditambahkan.'];
-	
+	$_SESSION['flash'] = ['type' => 'success', 'pesan' => 'Data buku berhasil diubah!'];
 	header('Location: list.php');
-	
+
 } catch (PDOException $e) {
 	$messages = $e->getMessage();
 	
 	$_SESSION['flash'] = ['type' => 'error', 'pesan' => $messages];
-
-    header('Location: tambah.php');
+    header('Location: edit.php?id'.$id);
 }
 
 exit;
