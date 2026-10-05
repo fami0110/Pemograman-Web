@@ -1,6 +1,10 @@
 <?php
   $page_title = "Beranda";
   include __DIR__ . '/includes/header.php';
+
+  require __DIR__ . '/includes/koneksi.php';
+  $buku = $pdo->query("SELECT COUNT(id) FROM buku")->fetch(PDO::FETCH_COLUMN);
+  $anggota = $pdo->query("SELECT COUNT(id) FROM anggota")->fetch(PDO::FETCH_COLUMN);
 ?>
 
 <section>
@@ -14,11 +18,11 @@
   <div>
     <article>
       <h3>Total Buku</h3>
-      <p><?= count($_SESSION['buku'] ?? []) ?></p>
+      <p><?= $buku ?? 0 ?></p>
     </article>
     <article>
       <h3>Total Anggota</h3>
-      <p><?= count($_SESSION['anggota'] ?? []) ?></p>
+      <p><?= $anggota ?? 0 ?></p>
     </article>
     <article>
       <h3>Sedang Dipinjam</h3>

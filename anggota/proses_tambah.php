@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+require __DIR__ . '/../includes/koneksi.php';
+
 $nama = trim($_POST['nama'] ?? '');
 $no_anggota = trim($_POST['no_anggota'] ?? '');
 $email = trim($_POST['email'] ?? '');
@@ -35,19 +37,36 @@ if (!empty($errors)) {
     exit;
 }
 
-if (!isset($_SESSION['anggota'])) {
-    $_SESSION['anggota'] = [];
+try {
+    $stmt = $pdo->prepare(
+        "INSERT INTO anggota (nama, no_anggota, email, alamat, no_hp, tgl_bergabung)
+        VALUES (:nama, :no_anggota, :email, :alamat, :no_hp, :tgl_bergabung)
+        RETURNING id"
+    );
+
+    $stmt->execute([
+        'nama' => $nama,
+        'no_anggota' => $no_anggota,
+        'email' => $email,
+        'alamat' => $alamat,
+        'no_hp' => $no_hp,
+        'tgl_bergabung' => date('Y-m-d H:i:s'),
+    ]);
+    
+    $_SESSION['flash'] = ['type' => 'success', 'pesan' => 'Anggota berhasil ditambahkan.'];
+
+    header('Location: list.php');
+    
+} catch (PDOException $e) {
+    $messages = $e->getMessage();
+
+    if (str_contains($messages, "Unique violation")) {
+        $_SESSION['flash'] = ['type' => 'error', 'pesan' => 'Kolom <b>No. Anggota</b> tidak boleh duplikat!'];
+    } else {
+        $_SESSION['flash'] = ['type' => 'error', 'pesan' => $messages];
+    }
+
+    header('Location: tambah.php');
 }
 
-$_SESSION['anggota'][] = [
-    'nama' => $nama,
-    'no_anggota' => $no_anggota,
-    'email' => $email,
-    'alamat' => $alamat,
-    'no_hp' => $no_hp,
-    'tgl_bergabung' => date('Y-m-d H:i:s'),
-];
-
-$_SESSION['flash'] = ['type' => 'success', 'pesan' => 'Anggota berhasil ditambahkan.'];
-header('Location: list.php');
 exit;

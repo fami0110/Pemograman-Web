@@ -1,10 +1,12 @@
 <?php
-$page_title = "Daftar Anggota";
-include __DIR__ . '/../includes/header.php';
+  $page_title = "Daftar Anggota";
+  include __DIR__ . '/../includes/header.php';
 
-$flash = $_SESSION['flash'] ?? null;
-unset($_SESSION['flash']);
-$daftarAnggota = $_SESSION['anggota'] ?? [];
+  $flash = $_SESSION['flash'] ?? null;
+  unset($_SESSION['flash']);
+
+  require __DIR__ . '/../includes/koneksi.php';
+  $daftarAnggota = $pdo->query("SELECT * FROM anggota ORDER BY tgl_bergabung DESC")->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <section>
   <div class="form-header">
@@ -43,12 +45,12 @@ $daftarAnggota = $_SESSION['anggota'] ?? [];
         <?php else: ?>
           <?php foreach ($daftarAnggota as $anggota): ?>
             <tr>
-              <td><?php echo $anggota['no_anggota']; ?></td>
-              <td><?php echo $anggota['nama']; ?></td>
-              <td><?php echo $anggota['email']; ?></td>
-              <td><?php echo $anggota['alamat']; ?></td>
-              <td><?php echo $anggota['no_hp']; ?></td>
-              <td><?php echo $anggota['tgl_bergabung']; ?></td>
+              <td><?= $anggota['no_anggota']; ?></td>
+              <td><?= $anggota['nama']; ?></td>
+              <td><?= $anggota['email']; ?></td>
+              <td><?= $anggota['alamat']; ?></td>
+              <td><?= $anggota['no_hp']; ?></td>
+              <td><?= date('d-m-Y', strtotime($anggota['tgl_bergabung'])); ?></td>
               <td>
                 <button type="button">Edit</button>
                 <button type="button" class="btn-hapus">Hapus</button>

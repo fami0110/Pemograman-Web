@@ -4,7 +4,16 @@
 
   $flash = $_SESSION['flash'] ?? null;
   unset($_SESSION['flash']);
-  $daftarBuku = $_SESSION['buku'] ?? [];
+
+  require __DIR__ . '/../includes/koneksi.php';
+  
+  if ($_GET["q"]) {
+    $stmt = $pdo->prepare("SELECT * FROM buku WHERE judul ILIKE ? ORDER BY id DESC");
+    $stmt->execute(["%".$_GET["q"]."%"]);
+    $daftarBuku = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  } else {
+    $daftarBuku = $pdo->query("SELECT * FROM buku ORDER BY id DESC")->fetchAll(PDO::FETCH_ASSOC);
+  }
 ?>
 
 <section>
@@ -18,8 +27,10 @@
     </p>
   <?php endif; ?>
   <div class="search-box">
-    <label for="search-input">Cari Judul Buku</label>
-    <input type="text" id="search-input" placeholder="Ketik judul buku...">
+    <form method="get">
+      <button type="submit">Cari Judul</button>
+      <input type="text" id="search-input" name="q" placeholder="Ketik judul buku..." value="<?= $_GET['q'] ?? '' ?>">
+    </form>
   </div>
   <div class="table-responsive">
     <table>
@@ -33,7 +44,13 @@
         </tr>
       </thead>
       <tbody>
-        <?php if (empty($daftarBuku)): ?>
+        <?php if (empty($daftarBuku) && isset($_GET['q'])): ?>
+          <tr>
+            <td colspan="5">
+              Hasil pencarian "<?= $_GET['q'] ?>" <b>tidak ada</b>.
+            </td>
+          </tr>
+        <?php elseif (empty($daftarBuku)): ?>
           <tr>
             <td colspan="5">
               Belum ada data buku. Silakan tambah lewat menu "Tambah Buku".
@@ -42,10 +59,10 @@
         <?php else: ?>
           <?php foreach ($daftarBuku as $buku): ?>
             <tr>
-              <td><?php echo $buku['judul']; ?></td>
-              <td><?php echo $buku['pengarang']; ?></td>
-              <td><?php echo $buku['tahun']; ?></td>
-              <td><?php echo $buku['stok']; ?></td>
+              <td><?= $buku['judul']; ?></td>
+              <td><?= $buku['pengarang']; ?></td>
+              <td><?= $buku['tahun']; ?></td>
+              <td><?= $buku['stok']; ?></td>
               <td>
                 <button type="button">Edit</button>
                 <button type="button" class="btn-hapus">Hapus</button>
